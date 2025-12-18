@@ -1,0 +1,23 @@
+name: Github Actions ordering
+
+on:
+  push:
+    branches:
+      - main
+
+jobs: 
+  my-build-job:
+    runs-on: ubuntu-latest
+
+    steps: 
+      - name: 빌드 작업 
+        run: echo "build Done"
+
+  my-deploy-job:
+    needs: my-build-job
+    runs-on: ubuntu-latest
+    name: 배포 작업
+
+    steps:
+    - name: 배포 작업
+      run: echo "deploy done" > output.txt
